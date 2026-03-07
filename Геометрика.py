@@ -52,68 +52,28 @@ def answer_btn_cliced():
     global question
     global right_answer
     global wrong_answer
+    global answer_p1
+    global question_p1
 
     if answer_plase.text() != '':
-        if question == 0:
-            if answer_plase.text() == 80 or answer_plase.text() == "80":
-                answer_btn.hide()
-                answer_plase.hide()
-                next_btn.show()
+        if answer_plase.text() == answer_p1[question]:
+            answer_btn.hide()
+            answer_plase.hide()
+            next_btn.show()
 
-                text1.setText("Правильно!")
+            text1.setText("Правильно!")
 
-                right_answer.append(question)
+            right_answer.append(question)
 
-            else:
-                answer_btn.hide()
-                answer_plase.hide()
-                next_btn.show()
+        else:
+            answer_btn.hide()
+            answer_plase.hide()
+            next_btn.show()
 
-                text1.setText("Неправильно!")
+            text1.setText("Неправильно!")
 
-                wrong_answer.append(question)
+            wrong_answer.append(question)
 
-        elif question == 1:
-            if answer_plase.text() == 30 or answer_plase.text() == "30":
-                answer_btn.hide()
-                answer_plase.hide()
-                next_btn.show()
-
-                text1.setText("Правильно!")
-
-                right_answer.append(question)
-
-            else:
-                answer_btn.hide()
-                answer_plase.hide()
-                next_btn.show()
-
-                text1.setText("Неправильно!")
-
-                wrong_answer.append(question)
-
-        # elif question == "Задача3":
-        #     if answer_plase.text() == 3 or answer_plase.text() == "3":
-        #         answer_btn.hide()
-        #         answer_plase.hide()
-        #         next_btn.show()
-        #         text1.setText("Правельно!")
-        #     else:
-        #         answer_btn.hide()
-        #         answer_plase.hide()
-        #         next_btn.show()
-        #         text1.setText("Неправельно!")
-        # elif question == "Задача4":
-        #     if answer_plase.text() == 4 or answer_plase.text() == "4":
-        #         answer_btn.hide()
-        #         answer_plase.hide()
-        #         next_btn.show()
-        #         text1.setText("Правельно!")
-        #     else:
-        #         answer_btn.hide()
-        #         answer_plase.hide()
-        #         next_btn.show()
-        #         text1.setText("Неправельно!")
 
     else:
         window_error("Поле не может быть пустым")
@@ -147,8 +107,11 @@ wrong_answer = []
 
 
 '''Задачи'''
-f1 = open("Задачи§1.txt", "r", encoding='UTF-8')
-question_p1 = f1.read().split("(*)")
+q1 = open("Задачи§1.txt", "r", encoding='UTF-8')
+question_p1 = q1.read().split("(*)")
+
+a1 = open("Ответы§1.txt", "r", encoding='UTF-8')
+answer_p1 = a1.read().split("\n")
 
 
 
