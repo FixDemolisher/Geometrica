@@ -1,6 +1,6 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QMessageBox, QHBoxLayout, QVBoxLayout, QLineEdit
-from PyQt5.QtGui import QFont
+from PyQt5.QtGui import QFont, QPixmap
 from random import randint
 
 
@@ -33,6 +33,7 @@ def next_bnt_cliced():
         if not(next_question in last_questions):
             question = next_question
 
+            show_image()
 
             last_questions.append(next_question)
 
@@ -84,6 +85,17 @@ def window_error(text_error):
     win.setWindowTitle("Alarm sistem")
     win.exec_()
 
+def show_image():
+    global question
+
+    filename = "Задача" + str(question) + ".png"
+
+    pixmapimage = QPixmap(filename)
+    label_width, label_hight = lb_image.width(), lb_image.height()
+    scaled_pixmap = pixmapimage.scaled(label_width, label_hight, Qt.KeepAspectRatio)
+    lb_image.setPixmap(scaled_pixmap)
+    lb_image.setVisible(True)
+
 
 
 
@@ -112,6 +124,8 @@ question_p1 = q1.read().split("(*)")
 
 a1 = open("Ответы§1.txt", "r", encoding='UTF-8')
 answer_p1 = a1.read().split("\n")
+
+lb_image = QLabel("Картинка")
 
 
 
@@ -189,6 +203,8 @@ Hlayout1.addLayout(col3)
 # col2.addLayout(row3)
 
 col2.addWidget(text1, alignment=(Qt.AlignHCenter | Qt.AlignVCenter))
+
+col2.addWidget(lb_image, alignment=(Qt.AlignHCenter | Qt.AlignVCenter))
 
 # col2.addWidget(lb_image, alignment=(Qt.AlignHCenter | Qt.AlignVCenter))
 
