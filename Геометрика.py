@@ -16,6 +16,7 @@ def next_bnt_cliced():
     global all_questions
     global g
     global question_p1
+    global lb_image
 
     for j in all_questions:
         if j in last_questions:
@@ -33,7 +34,11 @@ def next_bnt_cliced():
         if not(next_question in last_questions):
             question = next_question
 
+            answer_plase.show()
+            answer_btn.show()
+
             show_image()
+            lb_image.show()
 
             last_questions.append(next_question)
 
@@ -46,6 +51,7 @@ def next_bnt_cliced():
         next_btn.hide()
         answer_plase.hide()
         answer_btn.hide()
+        lb_image.hide()
 
         text1.setText(f"Правильных ответов: {len(right_answer)} из {len(last_questions)},\nНеправильных ответов: {len(wrong_answer)} из {len(last_questions)}")
 
@@ -55,8 +61,11 @@ def answer_btn_cliced():
     global wrong_answer
     global answer_p1
     global question_p1
+    global lb_image
 
-    if answer_plase.text() != '':
+    if answer_plase.text() != '' and answer_plase.text() != "12" and answer_plase.text() != "1":
+        lb_image.hide()
+
         if answer_plase.text() == answer_p1[question]:
             answer_btn.hide()
             answer_plase.hide()
@@ -76,8 +85,21 @@ def answer_btn_cliced():
             wrong_answer.append(question)
 
 
-    else:
+    elif answer_plase.text() == '':
         window_error("Поле не может быть пустым")
+
+
+    elif answer_plase.text() == "12" or answer_plase.text() == "1" and answer_plase.text() != answer_p1[question]:
+        lb_image.hide()
+
+        answer_btn.hide()
+        answer_plase.hide()
+        next_btn.show()
+
+        text1.setText("Неправильно!")
+
+        wrong_answer.append(question)
+
 
 def window_error(text_error):
     win = QMessageBox()
