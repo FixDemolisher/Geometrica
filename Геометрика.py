@@ -18,6 +18,8 @@ def next_bnt_cliced():
     global question_p1
     global lb_image
 
+    text1.setStyleSheet("color:'green'")
+
     for j in all_questions:
         if j in last_questions:
             g += 1
@@ -80,6 +82,8 @@ def answer_btn_cliced():
             answer_plase.hide()
             next_btn.show()
 
+            text1.setStyleSheet("color:'red'")
+
             text1.setText("Неправильно!")
 
             wrong_answer.append(question)
@@ -95,6 +99,8 @@ def answer_btn_cliced():
         answer_btn.hide()
         answer_plase.hide()
         next_btn.show()
+
+        text1.setStyleSheet("color:'red'")
 
         text1.setText("Неправильно!")
 
